@@ -3,33 +3,108 @@
   <head>
     <title>Sample</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet"  href="css/themes/default/jquery.mobile-1.1.0.css" />
+    <link rel="stylesheet" href="css/themes/default/jquery.mobile-1.1.0.css" />
+    <link rel="stylesheet" href="css/photoswipe.css" />
+    <script src="js/klass.min.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.mobile-1.1.0.js"></script>
+    <script src="js/code.photoswipe.jquery-3.0.4.min.js"></script>
+    <script>
+    (function(window, $, PhotoSwipe){
+      $(document).ready(function(){
+        $('section.gallery-page')
+          .live('pageshow', function(e){
+            var 
+              currentPage = $(e.target),
+              options = {},
+              photoSwipeInstance = $("ul.gallery a", e.target).photoSwipe(options,  currentPage.attr('id'));
+            return true;
+          })
+          .live('pagehide', function(e){
+            var 
+              currentPage = $(e.target),
+              photoSwipeInstance = PhotoSwipe.getInstance(currentPage.attr('id'));
+            if (typeof photoSwipeInstance != "undefined" && photoSwipeInstance != null) {
+              PhotoSwipe.detatch(photoSwipeInstance);
+            }
+            return true;
+          });
+      });
+    }(window, window.jQuery, window.Code.PhotoSwipe));
+    </script>
   </head>
+
   <body>
-    <section id="page1" data-role="page">
-      <header data-role="header"><h1>Wellcome to jQuery Moble</h1></header>
+    <!-- トップのインデックス -->
+    <section id="index" data-role="page">
+      <header data-role="header"><h1>ヘッダタイトル</h1></header>
       <div class="content" data-role="content">
-        <h2>アプリラインナップ</h2>
+        <h2>ヘッダ２ タイトル</h2>
+
+        <!-- リスト -->
         <ul data-role="listview">
-          <li><a href="#page2">
-            <img src="images/Icon-144.png">
+          <!-- 1個目 -->
+          <li><a href="#yururobo" data-transition="slide">
+            <img src="images/yururobo/icon.png">
             <h1>ゆるロボ製作所</h1>
             <p>出荷ゲー</p>
           </a></li>
-          <li><a href="#page2">App 02</a></li>
-          <li><a href="#page2">App 02</a></li>
+
+          <!-- 2個目 -->
+          <li><a href="#tictac" data-transition="slide">
+            <img src="images/tictac/icon.jpg">
+            <h1>Tic Tac Toe Count Down</h1>
+            <p>暇つぶしゲー</p>
+          </a></li>
+          
+          <!-- 3個目 -->
+          <li><a href="#bandnavi" data-transition="slide">
+            <img src="images/bandnavi/icon.png">
+            <h1>Band Navi</h1>
+            <p>バンド発見</p>
+          </a></li>
+
         </ul>
       </div>
     </section>
-    <section id="page2" data-role="page" data-add-back-btn="true">
+   
+    <!-- ゆるロボ -->
+    <section id="yururobo" data-role="page" data-add-back-btn="true" class="gallery-page">
       <header data-role="header"><h1>ゆるロボ製作所</h1></header>
       <div class="content" data-role="content">
-        <img src="images/SS01.png">
-        <img src="images/SS02.png">
-        <img src="images/SS03.png">
+        <ul class="gallery">
+          <li><a href="images/yururobo/001.png" rel="external"><img src="images/yururobo/001.png" /></a></li>
+          <li><a href="images/yururobo/002.png" rel="external"><img src="images/yururobo/002.png" /></a></li>
+          <li><a href="images/yururobo/003.png" rel="external"><img src="images/yururobo/003.png" /></a></li>
+        </ul>
       </div>
     </section>
+
+    <!-- マルバツゲーム --> 
+    <section id="tictac" data-role="page" data-add-back-btn="true" class="gallery-page">
+      <header data-role="header"><h1>Tic Tac Toe Downt Down</h1></header>
+      <div class="content" data-role="content">
+        <ul class="gallery">
+          <li><a href="images/tictac/001.png" rel="external"><img src="images/tictac/001.png" /></a></li>
+          <li><a href="images/tictac/002.png" rel="external"><img src="images/tictac/002.png" /></a></li>
+          <li><a href="images/tictac/003.png" rel="external"><img src="images/tictac/003.png" /></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Band Navi --> 
+    <section id="bandnavi" data-role="page" data-add-back-btn="true" class="gallery-page">
+      <header data-role="header"><h1>Tic Tac Toe Downt Down</h1></header>
+      <div class="content" data-role="content">
+        <ul class="gallery">
+          <li><a href="images/bandnavi/001.png" rel="external"><img src="images/bandnavi/001.png" /></a></li>
+          <li><a href="images/bandnavi/002.png" rel="external"><img src="images/bandnavi/002.png" /></a></li>
+          <li><a href="images/bandnavi/003.png" rel="external"><img src="images/bandnavi/003.png" /></a></li>
+          <li><a href="images/bandnavi/004.png" rel="external"><img src="images/bandnavi/004.png" /></a></li>
+          <li><a href="images/bandnavi/003.png" rel="external"><img src="images/bandnavi/005.png" /></a></li>
+        </ul>
+      </div>
+    </section>
+
   </body>
 </html>
